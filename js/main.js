@@ -25,10 +25,9 @@ function submitForm(event) {
   inputValues.title = titleValue;
   inputValues.url = urlValue;
   inputValues.notes = notesvalue;
-  inputValues.nextEntryID = data.nextEntryID;
   inputValues.entryId = data.nextEntryId;
   data.entries.unshift(inputValues);
   data.nextEntryId++;
-  document.querySelector('#form').reset();
+  newEntryForm.reset();
   img.setAttribute('src', 'images/placeholder-image-square.jpg');
 }
