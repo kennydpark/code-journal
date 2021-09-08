@@ -1,0 +1,82 @@
+body {
+  background-color: #f0f0f0;
+}
+
+label,
+input,
+textarea {
+  display: block;
+  width: 100%;
+}
+
+input,
+textarea {
+  font-family: 'Open Sans', sans-serif;
+}
+
+textarea {
+  margin-bottom: 1rem;
+  border: 1.3px gray solid;
+  border-radius: 3px;
+  padding: 8px;
+}
+
+input,
+textarea:focus {
+  outline-color: #562b81;
+}
+
+img {
+  width: 100%;
+  border-radius: 7px;
+  margin-bottom: 10px;
+}
+
+/* Header */
+
+.header-nav {
+  background-color: #562b81;
+  text-align: left;
+}
+
+.header-text {
+  margin: 0;
+  font-family: 'Proza Libre', sans-serif;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.8rem 0;
+}
+
+h2 {
+  margin: 15px 0;
+}
+
+label {
+  margin-bottom: 0.4rem;
+}
+
+button {
+  background-color: #562b81;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  border-style: none;
+  border-radius: 5px;
+  padding: 7px 12px;
+  cursor: pointer;
+}
+
+input {
+  margin-bottom: 1.3rem;
+  border: 1.3px gray solid;
+  border-radius: 3px;
+  padding: 8px;
+}
+
+.font-proza {
+  font-family: 'Proza Libre', sans-serif;
+  font-weight: bolder;
+}
+
+.text-right {
+  text-align: right;
+}
