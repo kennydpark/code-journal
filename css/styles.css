@@ -59,7 +59,7 @@ label {
   margin-bottom: 0.4rem;
 }
 
-button {
+.submit-button {
   background-color: #562b81;
   color: white;
   font-family: 'Open Sans', sans-serif;
@@ -67,6 +67,7 @@ button {
   border-radius: 5px;
   padding: 7px 12px;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
 input {
@@ -136,4 +137,8 @@ p {
 
 .column-new-button {
   position: relative;
+}
+
+.text-center {
+  text-align: center;
 }

@@ -4,6 +4,9 @@
 var photoURL = document.querySelector('#photo-url');
 var img = document.querySelector('img');
 var newEntryForm = document.querySelector('form');
+var entriesView = document.querySelector('#entries-view');
+var entryFormView = document.querySelector('#entry-form-view');
+var ulElement = document.querySelector('ul');
 
 photoURL.addEventListener('input', photoURLUpdate);
 
@@ -29,6 +32,12 @@ function submitForm(event) {
   data.entries.unshift(inputValues);
   data.nextEntryId++;
   newEntryForm.reset();
+  //
+  var newEntry = renderEntry(data.entries[0]);
+  ulElement.prepend(newEntry);
+  //
+  entriesView.className = 'view';
+  entryFormView.className = 'view hidden';
   img.setAttribute('src', 'images/placeholder-image-square.jpg');
 }
 
@@ -37,31 +46,10 @@ function submitForm(event) {
 var body = document.querySelector('body');
 var allView = document.querySelectorAll('.view');
 // var entriesAnchor = document.querySelector('.entries-anchor');
-
-// newEntryAnchor.addEventListener('click', switchView);
-// function switchView(event) {
-//   var dataView = event.target.getAttribute('data-view');
-//   for (var i = 0; i < allView.length; i++) {
-//     if (allView[i].getAttribute('data-view') === dataView) {
-//       allView[i].className = 'view';
-//     } else {
-//       allView[i].className = 'view hidden';
-//     }
-//   }
-// }
-
-// function switchView(event) {
-// entriesView.className = 'entries hidden';
-// for (var i = 0; i < allView.length; i++) {
-//   if (allView[i].getAttribute('') === dataView {
-//     allView[i].className = 'view'
-//   } else {
-//     allView[i].className = 'view hidden'
-//   }
-// }
-// }
+var noEntries = document.querySelector('.text-center');
 
 body.addEventListener('click', switchView);
+
 function switchView(event) {
   var dataView = event.target.getAttribute('data-view');
   if (event.target.matches('.new-anchor')) {
@@ -80,5 +68,86 @@ function switchView(event) {
         allView[x].className = 'view hidden';
       }
     }
+    // } else if (event.target.matches('.submit-button')) {
+
+  }
+  if (data.entries === []) {
+    noEntries.className = 'view';
+  } else {
+    noEntries.className = 'view hidden';
   }
 }
+
+// feature 2
+// ---------DOM TREE------------
+// <div class="row">
+//   <ul>
+//     <li>
+//       <div class="row">
+//         <div class="column-half column-entry entry-image">
+//           <img src="insert url">
+//         </div>
+//         <div class="column-half column-entry entry-text">
+//           <h3 class="font-proza title-styling">Charmander</h3>
+//           <p>notes</p>
+//         </div>
+//        </div>
+//     </li>
+//   </ul>
+
+function renderEntry(entry) {
+  var entryItem = document.createElement('li');
+  var divRow = document.createElement('div');
+  divRow.setAttribute('class', 'row');
+  entryItem.appendChild(divRow);
+  var columnHalfImage = document.createElement('div');
+  columnHalfImage.setAttribute('class', 'column-half column-entry entry-image');
+  divRow.appendChild(columnHalfImage);
+  var imgRender = document.createElement('img');
+  imgRender.setAttribute('src', entry.url);
+  columnHalfImage.appendChild(imgRender);
+  var columnHalfText = document.createElement('div');
+  columnHalfText.setAttribute('class', 'column-half column-entry entry-text');
+  divRow.appendChild(columnHalfText);
+  var h3 = document.createElement('h3');
+  h3.setAttribute('class', 'font-proza title-styling');
+  columnHalfText.appendChild(h3);
+  h3.textContent = entry.title;
+  var p = document.createElement('p');
+  columnHalfText.appendChild(p);
+  p.textContent = entry.notes;
+  return entryItem;
+}
+
+document.addEventListener('DOMContentLoaded', loadedPage);
+
+function loadedPage(event) {
+  var ulElement = document.querySelector('ul');
+
+  for (var i = 0; i < data.entries.length; i++) {
+    var domTree = renderEntry(data.entries[i]);
+    ulElement.appendChild(domTree);
+  }
+}
+
+// var submitEntry = document.querySelector('.submit-button');
+
+// submitEntry.addEventListener('click', function (event) {
+//   var ulElement = document.querySelector('ul');
+
+//   for (var i = 0; i < data.entries.length; i++) {
+//     var domTree = renderEntry(data.entries[i]);
+//     ulElement.appendChild(domTree);
+//   }
+// });
+
+// document.addEventListener('submit', submitEntry);
+
+// function submitEntry(event) {
+//   var ulElement = document.querySelector('ul');
+
+//   for (var i = 0; i < data.entries.length; i++) {
+//     var domTree = renderEntry(data.entries[i]);
+//     ulElement.appendChild(domTree);
+//   }
+// }
