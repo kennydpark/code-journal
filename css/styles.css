@@ -89,8 +89,17 @@ input {
   display: flex;
 }
 
-.button-new {
+.new-anchor {
   margin-top: 15px;
+  background-color: #562b81;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  border-style: none;
+  border-radius: 5px;
+  padding: 5px 12px;
+  cursor: pointer;
+  position: relative;
+  top: 20px;
 }
 
 ul {
@@ -115,11 +124,16 @@ p {
   display: flex;
 }
 
-.header-entries {
+.entries-anchor {
   margin: 0 25px;
   font-family: 'Open Sans', sans-serif;
   color: white;
   font-size: 1rem;
   padding-top: 0.9rem;
   padding-bottom: 0.8rem;
+  cursor: pointer;
+}
+
+.column-new-button {
+  position: relative;
 }

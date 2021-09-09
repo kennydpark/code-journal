@@ -31,3 +31,54 @@ function submitForm(event) {
   newEntryForm.reset();
   img.setAttribute('src', 'images/placeholder-image-square.jpg');
 }
+
+// feature 2
+// var newEntryAnchor = document.querySelector('.button-new');
+var body = document.querySelector('body');
+var allView = document.querySelectorAll('.view');
+// var entriesAnchor = document.querySelector('.entries-anchor');
+
+// newEntryAnchor.addEventListener('click', switchView);
+// function switchView(event) {
+//   var dataView = event.target.getAttribute('data-view');
+//   for (var i = 0; i < allView.length; i++) {
+//     if (allView[i].getAttribute('data-view') === dataView) {
+//       allView[i].className = 'view';
+//     } else {
+//       allView[i].className = 'view hidden';
+//     }
+//   }
+// }
+
+// function switchView(event) {
+// entriesView.className = 'entries hidden';
+// for (var i = 0; i < allView.length; i++) {
+//   if (allView[i].getAttribute('') === dataView {
+//     allView[i].className = 'view'
+//   } else {
+//     allView[i].className = 'view hidden'
+//   }
+// }
+// }
+
+body.addEventListener('click', switchView);
+function switchView(event) {
+  var dataView = event.target.getAttribute('data-view');
+  if (event.target.matches('.new-anchor')) {
+    for (var i = 0; i < allView.length; i++) {
+      if (allView[i].getAttribute('data-view') === dataView) {
+        allView[i].className = 'view';
+      } else {
+        allView[i].className = 'view hidden';
+      }
+    }
+  } else if (event.target.matches('.entries-anchor')) {
+    for (var x = 0; x < allView.length; x++) {
+      if (allView[x].getAttribute('data-view') === dataView) {
+        allView[x].className = 'view';
+      } else {
+        allView[x].className = 'view hidden';
+      }
+    }
+  }
+}

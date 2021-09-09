@@ -24,18 +24,18 @@
       <div class="container">
         <div class="column-full display-flex">
           <h4 class="header-text">Code Journal</h4>
-          <p class="header-entries">Entries</p>
+          <a data-view="entries" class="entries-anchor">Entries</a>
         </div>
       </div>
     </div>
   </header>
   <div class="container">
   <main>
-      <div data-view="entry-form">
+      <div data-view="entry-form" class="view hidden">
         <form id="form">
           <div class="row">
             <div class="column-full">
-              <h2 class="font-proza">New Entry</h2>
+              <h2 class="button-entries font-proza">New Entry</h2>
             </div>
           </div>
           <div class="row">
@@ -62,13 +62,13 @@
           </div>
         </form>
       </div>
-      <div data-view="entries">
+      <div data-view="entries" class="view">
         <div class="row-entries-header">
           <div class="column-half">
             <h2 class="font-proza">Entries</h2>
           </div>
-          <div class="column-half text-right">
-          <button type="button" class="button-new">NEW</button>
+          <div class="column-half column-new-button text-right">
+            <a data-view="entry-form" class="new-anchor">NEW</a>
           </div>
         </div>
         <div class="row">
