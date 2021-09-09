@@ -2,6 +2,10 @@ body {
   background-color: #f0f0f0;
 }
 
+.row {
+  display: flex;
+}
+
 label,
 input,
 textarea {
@@ -79,4 +83,30 @@ input {
 
 .text-right {
   text-align: right;
+}
+
+.row-entries {
+  display: flex;
+}
+
+.button-new {
+  margin-top: 15px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.title-styling {
+  margin: 0 0;
+}
+
+.column-entry {
+  margin-bottom: 10px;
 }
