@@ -60,9 +60,13 @@ function renderEntry(entry) {
   return entryItem;
 }
 
-var ulElement = document.querySelector('ul');
+document.addEventListener('DOMContentLoaded', reloadPage);
 
-for (var i = 0; i < data.entries.length; i++) {
-  var domTree = renderEntry(data.entries[i]);
-  ulElement.appendChild(domTree);
+function reloadPage(event) {
+  var ulElement = document.querySelector('ul');
+
+  for (var i = 0; i < data.entries.length; i++) {
+    var domTree = renderEntry(data.entries[i]);
+    ulElement.appendChild(domTree);
+  }
 }
