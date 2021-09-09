@@ -85,7 +85,7 @@ input {
   text-align: right;
 }
 
-.row-entries {
+.row-entries-header {
   display: flex;
 }
 
