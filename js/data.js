@@ -19,10 +19,10 @@ if (previousDataJSON) {
   data = JSON.parse(previousDataJSON);
 }
 
-var noEntries = document.querySelector('#no-entries');
-if (data.nextEntryId === 1) {
-  noEntries.className = 'view';
-  data.view = 'no-entries';
-} else {
-  noEntries.className = 'view hidden';
-}
+// var noEntries = document.querySelector('#no-entries');
+// if (data.nextEntryId === 1) {
+//   noEntries.className = 'view';
+//   data.view = 'no-entries';
+// } else {
+//   noEntries.className = 'view hidden';
+// }

@@ -38,6 +38,7 @@ function submitForm(event) {
 
   entriesView.className = 'view';
   entryFormView.className = 'view hidden';
+  data.view = 'entries';
   img.setAttribute('src', 'images/placeholder-image-square.jpg');
 }
 
@@ -111,19 +112,25 @@ function switchView(event) {
       }
     }
   } else if (event.target.matches('.entries-anchor')) {
+    var noEntries = document.querySelector('#no-entries');
+
     for (var x = 0; x < allView.length; x++) {
       if (allView[x].getAttribute('data-view') === dataView) {
         allView[x].className = 'view';
         data.view = allView[x].getAttribute('data-view');
       } else {
+
         allView[x].className = 'view hidden';
+      }
+      if (data.nextEntryId === 1) {
+        noEntries.className = 'view';
       }
     }
   }
 }
 
 window.addEventListener('load', reloadPage);
-
+var noEntries = document.querySelector('#no-entries');
 function reloadPage(event) {
   for (var i = 0; i < allView.length; i++) {
     if (allView[i].getAttribute('data-view') === data.view) {
@@ -131,6 +138,11 @@ function reloadPage(event) {
     } else {
       allView[i].className = 'view hidden';
     }
-
+  }
+  if ((data.nextEntryId === 1) && (data.view === 'entries')) {
+    noEntries.className = 'view';
   }
 }
+
+// if (data.nextEntryId === 1) {
+//       noEntries.className = 'view';
