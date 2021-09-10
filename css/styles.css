@@ -63,6 +63,7 @@ label {
   background-color: #562b81;
   color: white;
   font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
   border-style: none;
   border-radius: 5px;
   padding: 7px 12px;
@@ -117,6 +118,16 @@ p {
   font-family: 'Open Sans', sans-serif;
 }
 
+.entries-anchor {
+  margin: 0 25px;
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+  font-size: 1rem;
+  padding-top: 0.9rem;
+  padding-bottom: 0.8rem;
+  cursor: pointer;
+}
+
 .title-styling {
   margin: 0 0;
 }
@@ -127,16 +138,6 @@ p {
 
 .display-flex {
   display: flex;
-}
-
-.entries-anchor {
-  margin: 0 25px;
-  font-family: 'Open Sans', sans-serif;
-  color: white;
-  font-size: 1rem;
-  padding-top: 0.9rem;
-  padding-bottom: 0.8rem;
-  cursor: pointer;
 }
 
 .column-new-button {
