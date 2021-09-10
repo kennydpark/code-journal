@@ -150,8 +150,12 @@ p {
 
 i {
   font-size: 1.5rem;
-  color: #562b81;
+  color: #562b81b4;
   cursor: pointer;
+}
+
+i:hover {
+  color: #562b81;
 }
 
 .column-entry-title {

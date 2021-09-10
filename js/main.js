@@ -41,6 +41,7 @@ function submitForm(event) {
 
 function renderEntry(entry) {
   var entryItem = document.createElement('li');
+  entryItem.setAttribute('data-entry-id', entry.entryId);
   var divRow = document.createElement('div');
   divRow.setAttribute('class', 'row');
   entryItem.appendChild(divRow);
