@@ -112,5 +112,5 @@ function loadedPage(event) {
 var entriesParent = document.querySelector('ul');
 entriesParent.addEventListener('click', editIconHandler);
 function editIconHandler(event) {
-
+  switchView('entry-form');
 }
