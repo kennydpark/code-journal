@@ -109,6 +109,10 @@ ul {
   margin: 0;
 }
 
+li {
+  margin-bottom: 20px;
+}
+
 p {
   font-family: 'Open Sans', sans-serif;
 }

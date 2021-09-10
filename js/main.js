@@ -32,51 +32,18 @@ function submitForm(event) {
   data.entries.unshift(inputValues);
   data.nextEntryId++;
   newEntryForm.reset();
-  //
+
   var newEntry = renderEntry(data.entries[0]);
   ulElement.prepend(newEntry);
-  //
+
   entriesView.className = 'view';
   entryFormView.className = 'view hidden';
   img.setAttribute('src', 'images/placeholder-image-square.jpg');
 }
 
 // feature 2
-// var newEntryAnchor = document.querySelector('.button-new');
 var body = document.querySelector('body');
 var allView = document.querySelectorAll('.view');
-// var entriesAnchor = document.querySelector('.entries-anchor');
-var noEntries = document.querySelector('.text-center');
-
-body.addEventListener('click', switchView);
-
-function switchView(event) {
-  var dataView = event.target.getAttribute('data-view');
-  if (event.target.matches('.new-anchor')) {
-    for (var i = 0; i < allView.length; i++) {
-      if (allView[i].getAttribute('data-view') === dataView) {
-        allView[i].className = 'view';
-      } else {
-        allView[i].className = 'view hidden';
-      }
-    }
-  } else if (event.target.matches('.entries-anchor')) {
-    for (var x = 0; x < allView.length; x++) {
-      if (allView[x].getAttribute('data-view') === dataView) {
-        allView[x].className = 'view';
-      } else {
-        allView[x].className = 'view hidden';
-      }
-    }
-    // } else if (event.target.matches('.submit-button')) {
-
-  }
-  if (data.entries === []) {
-    noEntries.className = 'view';
-  } else {
-    noEntries.className = 'view hidden';
-  }
-}
 
 // feature 2
 // ---------DOM TREE------------
@@ -130,24 +97,40 @@ function loadedPage(event) {
   }
 }
 
-// var submitEntry = document.querySelector('.submit-button');
+body.addEventListener('click', switchView);
 
-// submitEntry.addEventListener('click', function (event) {
-//   var ulElement = document.querySelector('ul');
+function switchView(event) {
+  var dataView = event.target.getAttribute('data-view');
+  if (event.target.matches('.new-anchor')) {
+    for (var i = 0; i < allView.length; i++) {
+      if (allView[i].getAttribute('data-view') === dataView) {
+        allView[i].className = 'view';
+        data.view = allView[i].getAttribute('data-view');
+      } else {
+        allView[i].className = 'view hidden';
+      }
+    }
+  } else if (event.target.matches('.entries-anchor')) {
+    for (var x = 0; x < allView.length; x++) {
+      if (allView[x].getAttribute('data-view') === dataView) {
+        allView[x].className = 'view';
+        data.view = allView[x].getAttribute('data-view');
+      } else {
+        allView[x].className = 'view hidden';
+      }
+    }
+  }
+}
 
-//   for (var i = 0; i < data.entries.length; i++) {
-//     var domTree = renderEntry(data.entries[i]);
-//     ulElement.appendChild(domTree);
-//   }
-// });
+window.addEventListener('load', reloadPage);
 
-// document.addEventListener('submit', submitEntry);
+function reloadPage(event) {
+  for (var i = 0; i < allView.length; i++) {
+    if (allView[i].getAttribute('data-view') === data.view) {
+      allView[i].className = 'view';
+    } else {
+      allView[i].className = 'view hidden';
+    }
 
-// function submitEntry(event) {
-//   var ulElement = document.querySelector('ul');
-
-//   for (var i = 0; i < data.entries.length; i++) {
-//     var domTree = renderEntry(data.entries[i]);
-//     ulElement.appendChild(domTree);
-//   }
-// }
+  }
+}
