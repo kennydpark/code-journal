@@ -42,26 +42,8 @@ function submitForm(event) {
   img.setAttribute('src', 'images/placeholder-image-square.jpg');
 }
 
-// feature 2
 var body = document.querySelector('body');
 var allView = document.querySelectorAll('.view');
-
-// feature 2
-// ---------DOM TREE------------
-// <div class="row">
-//   <ul>
-//     <li>
-//       <div class="row">
-//         <div class="column-half column-entry entry-image">
-//           <img src="insert url">
-//         </div>
-//         <div class="column-half column-entry entry-text">
-//           <h3 class="font-proza title-styling">Charmander</h3>
-//           <p>notes</p>
-//         </div>
-//        </div>
-//     </li>
-//   </ul>
 
 function renderEntry(entry) {
   var entryItem = document.createElement('li');
@@ -119,7 +101,6 @@ function switchView(event) {
         allView[x].className = 'view';
         data.view = allView[x].getAttribute('data-view');
       } else {
-
         allView[x].className = 'view hidden';
       }
       if (data.nextEntryId === 1) {
@@ -130,7 +111,9 @@ function switchView(event) {
 }
 
 window.addEventListener('load', reloadPage);
+
 var noEntries = document.querySelector('#no-entries');
+
 function reloadPage(event) {
   for (var i = 0; i < allView.length; i++) {
     if (allView[i].getAttribute('data-view') === data.view) {
@@ -143,6 +126,3 @@ function reloadPage(event) {
     noEntries.className = 'view';
   }
 }
-
-// if (data.nextEntryId === 1) {
-//       noEntries.className = 'view';
