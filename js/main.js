@@ -4,9 +4,9 @@
 var photoURL = document.querySelector('#photo-url');
 var img = document.querySelector('img');
 var newEntryForm = document.querySelector('form');
-var entriesView = document.querySelector('#entries-view');
-var entryFormView = document.querySelector('#entry-form-view');
 var ulElement = document.querySelector('ul');
+var body = document.querySelector('body');
+var allView = document.querySelectorAll('.view');
 
 photoURL.addEventListener('input', photoURLUpdate);
 
@@ -32,18 +32,11 @@ function submitForm(event) {
   data.entries.unshift(inputValues);
   data.nextEntryId++;
   newEntryForm.reset();
-
   var newEntry = renderEntry(data.entries[0]);
   ulElement.prepend(newEntry);
-
-  entriesView.className = 'view';
-  entryFormView.className = 'view hidden';
-  data.view = 'entries';
+  switchView('entries');
   img.setAttribute('src', 'images/placeholder-image-square.jpg');
 }
-
-var body = document.querySelector('body');
-var allView = document.querySelectorAll('.view');
 
 function renderEntry(entry) {
   var entryItem = document.createElement('li');
@@ -69,60 +62,40 @@ function renderEntry(entry) {
   return entryItem;
 }
 
-document.addEventListener('DOMContentLoaded', loadedPage);
-
-function loadedPage(event) {
-  var ulElement = document.querySelector('ul');
-
-  for (var i = 0; i < data.entries.length; i++) {
-    var domTree = renderEntry(data.entries[i]);
-    ulElement.appendChild(domTree);
+body.addEventListener('click', handleViewNavigation);
+function handleViewNavigation(event) {
+  var targetDataViewValue = event.target.getAttribute('data-view');
+  if (targetDataViewValue) {
+    switchView(targetDataViewValue);
   }
 }
 
-body.addEventListener('click', switchView);
-
-function switchView(event) {
-  var dataView = event.target.getAttribute('data-view');
-  if (event.target.matches('.new-anchor')) {
-    for (var i = 0; i < allView.length; i++) {
-      if (allView[i].getAttribute('data-view') === dataView) {
-        allView[i].className = 'view';
-        data.view = allView[i].getAttribute('data-view');
-      } else {
-        allView[i].className = 'view hidden';
-      }
-    }
-  } else if (event.target.matches('.entries-anchor')) {
-    var noEntries = document.querySelector('#no-entries');
-
-    for (var x = 0; x < allView.length; x++) {
-      if (allView[x].getAttribute('data-view') === dataView) {
-        allView[x].className = 'view';
-        data.view = allView[x].getAttribute('data-view');
-      } else {
-        allView[x].className = 'view hidden';
-      }
-      if (data.nextEntryId === 1) {
-        noEntries.className = 'view';
-      }
-    }
-  }
-}
-
-window.addEventListener('load', reloadPage);
-
-var noEntries = document.querySelector('#no-entries');
-
-function reloadPage(event) {
+function switchView(view) {
   for (var i = 0; i < allView.length; i++) {
-    if (allView[i].getAttribute('data-view') === data.view) {
+    if (view === allView[i].getAttribute('data-view')) {
       allView[i].className = 'view';
+      data.view = view;
     } else {
       allView[i].className = 'view hidden';
     }
   }
   if ((data.nextEntryId === 1) && (data.view === 'entries')) {
     noEntries.className = 'view';
+  }
+}
+
+window.addEventListener('load', reloadPage);
+var noEntries = document.querySelector('#no-entries');
+function reloadPage(event) {
+  switchView(data.view);
+}
+
+document.addEventListener('DOMContentLoaded', loadedPage);
+
+function loadedPage(event) {
+  var ulElement = document.querySelector('ul');
+  for (var i = 0; i < data.entries.length; i++) {
+    var domTree = renderEntry(data.entries[i]);
+    ulElement.appendChild(domTree);
   }
 }
