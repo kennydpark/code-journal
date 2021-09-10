@@ -22,19 +22,20 @@
   <header>
     <div class="header-nav">
       <div class="container">
-        <div class="column-full">
+        <div class="column-full display-flex">
           <h4 class="header-text">Code Journal</h4>
+          <a data-view="entries" class="entries-anchor">Entries</a>
         </div>
       </div>
     </div>
   </header>
   <div class="container">
   <main>
-      <div data-view="entry-form">
+      <div data-view="entry-form" class="view hidden" id="entry-form-view">
         <form id="form">
           <div class="row">
             <div class="column-full">
-              <h2 class="font-proza">New Entry</h2>
+              <h2 class="button-entries font-proza">New Entry</h2>
             </div>
           </div>
           <div class="row">
@@ -56,10 +57,27 @@
           </div>
           <div class="row">
             <div class="column-full text-right">
-              <button type="submit">SAVE</button>
+              <button data-view="entries" type="submit" class="submit-button">SAVE</button>
             </div>
           </div>
         </form>
+      </div>
+      <div data-view="entries" class="view" id="entries-view">
+        <div class="row">
+          <div class="column-entries">
+            <h2 class="font-proza">Entries</h2>
+          </div>
+          <div class="column-entries column-new-button text-right">
+            <a data-view="entry-form" class="new-anchor">NEW</a>
+          </div>
+        </div>
+        <div class="row">
+          <ul>
+          </ul>
+        </div>
+      </div>
+      <div data-view="no-entries" class="view" id="no-entries">
+        <p class="text-center">No entries have been recorded.</p>
       </div>
   </main>
   </div>
