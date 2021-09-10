@@ -147,3 +147,17 @@ p {
 .column-entries {
   width: 50%;
 }
+
+i {
+  font-size: 1.5rem;
+  color: #562b81;
+  cursor: pointer;
+}
+
+.column-entry-title {
+  width: 50%;
+}
+
+.entries-top-row {
+  margin-bottom: 10px;
+}

@@ -7,6 +7,7 @@ var newEntryForm = document.querySelector('form');
 var ulElement = document.querySelector('ul');
 var body = document.querySelector('body');
 var allView = document.querySelectorAll('.view');
+var noEntries = document.querySelector('#no-entries');
 
 photoURL.addEventListener('input', photoURLUpdate);
 
@@ -44,17 +45,29 @@ function renderEntry(entry) {
   divRow.setAttribute('class', 'row');
   entryItem.appendChild(divRow);
   var columnHalfImage = document.createElement('div');
-  columnHalfImage.setAttribute('class', 'column-half column-entry entry-image');
+  columnHalfImage.setAttribute('class', 'column-half column-entry');
   divRow.appendChild(columnHalfImage);
   var imgRender = document.createElement('img');
   imgRender.setAttribute('src', entry.url);
   columnHalfImage.appendChild(imgRender);
   var columnHalfText = document.createElement('div');
-  columnHalfText.setAttribute('class', 'column-half column-entry entry-text');
+  columnHalfText.setAttribute('class', 'column-half column-entry');
   divRow.appendChild(columnHalfText);
+  var divRowTitle = document.createElement('div');
+  divRowTitle.setAttribute('class', 'row');
+  columnHalfText.appendChild(divRowTitle);
+  var columnEntryTitle = document.createElement('div');
+  columnEntryTitle.setAttribute('class', 'column-entry-title');
+  divRowTitle.appendChild(columnEntryTitle);
   var h3 = document.createElement('h3');
   h3.setAttribute('class', 'font-proza title-styling');
-  columnHalfText.appendChild(h3);
+  columnEntryTitle.appendChild(h3);
+  var columnEntryTitleIcon = document.createElement('div');
+  columnEntryTitleIcon.setAttribute('class', 'column-entry-title column-edit-icon text-right');
+  divRowTitle.appendChild(columnEntryTitleIcon);
+  var editIcon = document.createElement('i');
+  editIcon.setAttribute('class', 'fas fa-pen');
+  columnEntryTitleIcon.appendChild(editIcon);
   h3.textContent = entry.title;
   var p = document.createElement('p');
   columnHalfText.appendChild(p);
@@ -84,12 +97,6 @@ function switchView(view) {
   }
 }
 
-window.addEventListener('load', reloadPage);
-var noEntries = document.querySelector('#no-entries');
-function reloadPage(event) {
-  switchView(data.view);
-}
-
 document.addEventListener('DOMContentLoaded', loadedPage);
 
 function loadedPage(event) {
@@ -98,4 +105,5 @@ function loadedPage(event) {
     var domTree = renderEntry(data.entries[i]);
     ulElement.appendChild(domTree);
   }
+  switchView(data.view);
 }
