@@ -112,5 +112,16 @@ function loadedPage(event) {
 var entriesParent = document.querySelector('ul');
 entriesParent.addEventListener('click', editIconHandler);
 function editIconHandler(event) {
+  if (!(event.target.className === 'fas fa-pen')) {
+    return;
+  }
+  var entryListElement = event.target.closest('li');
+  var dataEntryIdValue = entryListElement.getAttribute('data-entry-id');
+  for (var i = 0; i < data.entries.length; i++) {
+    var entryIdString = data.entries[i].entryId.toString();
+    if (entryIdString === dataEntryIdValue) {
+      data.editing = data.entries[i];
+    }
+  }
   switchView('entry-form');
 }
