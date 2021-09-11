@@ -1,8 +1,10 @@
 /* global data */
 /* exported data */
 
+var inputTitle = document.querySelector('#title');
 var photoURL = document.querySelector('#photo-url');
 var img = document.querySelector('img');
+var textAreaNotes = document.querySelector('#notes');
 var newEntryForm = document.querySelector('form');
 var ulElement = document.querySelector('ul');
 var body = document.querySelector('body');
@@ -124,4 +126,8 @@ function editIconHandler(event) {
     }
   }
   switchView('entry-form');
+  img.setAttribute('src', data.editing.url);
+  inputTitle.value = data.editing.title;
+  photoURL.value = data.editing.url;
+  textAreaNotes.value = data.editing.notes;
 }
