@@ -35,7 +35,7 @@
         <form id="form">
           <div class="row">
             <div class="column-full">
-              <h2 class="button-entries font-proza">New Entry</h2>
+                <h2 class="button-entries font-proza">New Entry</h2>
             </div>
           </div>
           <div class="row">
@@ -62,18 +62,51 @@
           </div>
         </form>
       </div>
+      <!-- EDIT ENTRY FORM -->
+      <!-- <div data-view="edit-entry" class="view hidden" id="edit-entry-form-view">
+        <form id="form">
+          <div class="row">
+            <div class="column-full">
+              <h2 class="button-entries font-proza">New Entry</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-half">
+              <img src="images/placeholder-image-square.jpg">
+            </div>
+            <div class="column-half">
+              <label for="title" class="font-proza">Title</label>
+              <input required name="title" type="text" id="title">
+              <label for="photo-url" class="font-proza">Photo URL</label>
+              <input required name="photo-url" type="text" id="photo-url">
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full">
+              <label for="notes" class="font-proza">Notes</label>
+              <textarea required rows="6" name="notes" id="notes"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full text-right">
+              <button data-view="entries" type="submit" class="submit-button">SAVE</button>
+            </div>
+          </div>
+        </form>
+      </div> -->
+      <!-- end edit entry form -->
       <div data-view="entries" class="view" id="entries-view">
         <div class="row entries-top-row">
           <div class="column-entries">
             <h2 class="font-proza">Entries</h2>
           </div>
           <div class="column-entries column-new-button text-right">
-            <a data-view="entry-form" class="new-anchor">NEW</a>
+            <a data-view="entry-form" class="new-anchor" id="new-button">NEW</a>
           </div>
         </div>
         <div class="row">
           <ul>
-            <li dummy-entry>
+            <!-- <li dummy-entry>
               <div class="row">
                 <div class="column-half column-entry">
                   <img src="https://pbs.twimg.com/profile_images/1377854248621199360/F7S8p4xK.jpg">
@@ -90,7 +123,7 @@
                   <p>Dummy notes</p>
                 </div>
               </div>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>

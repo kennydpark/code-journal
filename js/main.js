@@ -28,15 +28,31 @@ function submitForm(event) {
   var titleValue = newEntryForm.elements.title.value;
   var urlValue = newEntryForm.elements['photo-url'].value;
   var notesvalue = newEntryForm.elements.notes.value;
-  inputValues.title = titleValue;
-  inputValues.url = urlValue;
-  inputValues.notes = notesvalue;
-  inputValues.entryId = data.nextEntryId;
-  data.entries.unshift(inputValues);
-  data.nextEntryId++;
-  newEntryForm.reset();
-  var newEntry = renderEntry(data.entries[0]);
-  ulElement.prepend(newEntry);
+  if (data.editing !== null) {
+    inputValues.title = titleValue;
+    inputValues.url = urlValue;
+    inputValues.notes = notesvalue;
+    inputValues.entryId = data.editing.entryId;
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId === data.editing.entryId) {
+        data.entries[i] = inputValues;
+      }
+    }
+  } else {
+    inputValues.title = titleValue;
+    inputValues.url = urlValue;
+    inputValues.notes = notesvalue;
+    inputValues.entryId = data.nextEntryId;
+    data.entries.unshift(inputValues);
+    data.nextEntryId++;
+    newEntryForm.reset();
+    var newEntry = renderEntry(data.entries[0]);
+    ulElement.prepend(newEntry);
+  }
+
+  //
+
+  //
   switchView('entries');
   img.setAttribute('src', 'images/placeholder-image-square.jpg');
 }
@@ -70,6 +86,8 @@ function renderEntry(entry) {
   divRowTitle.appendChild(columnEntryTitleIcon);
   var editIcon = document.createElement('i');
   editIcon.setAttribute('class', 'fas fa-pen');
+  // NEW
+  // editIcon.setAttribute('data-view', 'edit-entry');
   columnEntryTitleIcon.appendChild(editIcon);
   h3.textContent = entry.title;
   var p = document.createElement('p');
@@ -83,6 +101,13 @@ function handleViewNavigation(event) {
   var targetDataViewValue = event.target.getAttribute('data-view');
   if (targetDataViewValue) {
     switchView(targetDataViewValue);
+  }
+  if (event.target.getAttribute('id') === 'new-button') {
+    newEntryForm.elements.title.value = '';
+    newEntryForm.elements['photo-url'].value = '';
+    newEntryForm.elements.notes.value = '';
+    img.setAttribute('src', 'images/placeholder-image-square.jpg');
+    data.editing = null;
   }
 }
 
@@ -125,9 +150,10 @@ function editIconHandler(event) {
       data.editing = data.entries[i];
     }
   }
-  switchView('entry-form');
+
   img.setAttribute('src', data.editing.url);
   inputTitle.value = data.editing.title;
   photoURL.value = data.editing.url;
   textAreaNotes.value = data.editing.notes;
+  switchView('entry-form');
 }
