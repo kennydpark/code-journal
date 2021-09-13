@@ -10,6 +10,7 @@ var ulElement = document.querySelector('ul');
 var body = document.querySelector('body');
 var allView = document.querySelectorAll('.view');
 var noEntries = document.querySelector('#no-entries');
+var newEntryHeader = document.querySelector('.new-entry-header');
 
 photoURL.addEventListener('input', photoURLUpdate);
 
@@ -29,6 +30,7 @@ function submitForm(event) {
   var urlValue = newEntryForm.elements['photo-url'].value;
   var notesvalue = newEntryForm.elements.notes.value;
   if (data.editing !== null) {
+    var entry = document.querySelector('[data-entry-id=' + CSS.escape(data.editing.entryId) + ']');
     inputValues.title = titleValue;
     inputValues.url = urlValue;
     inputValues.notes = notesvalue;
@@ -36,6 +38,7 @@ function submitForm(event) {
     for (var i = 0; i < data.entries.length; i++) {
       if (data.entries[i].entryId === data.editing.entryId) {
         data.entries[i] = inputValues;
+        entry.replaceWith(renderEntry(data.entries[i]));
       }
     }
   } else {
@@ -49,10 +52,6 @@ function submitForm(event) {
     var newEntry = renderEntry(data.entries[0]);
     ulElement.prepend(newEntry);
   }
-
-  //
-
-  //
   switchView('entries');
   img.setAttribute('src', 'images/placeholder-image-square.jpg');
 }
@@ -86,8 +85,6 @@ function renderEntry(entry) {
   divRowTitle.appendChild(columnEntryTitleIcon);
   var editIcon = document.createElement('i');
   editIcon.setAttribute('class', 'fas fa-pen');
-  // NEW
-  // editIcon.setAttribute('data-view', 'edit-entry');
   columnEntryTitleIcon.appendChild(editIcon);
   h3.textContent = entry.title;
   var p = document.createElement('p');
@@ -103,6 +100,7 @@ function handleViewNavigation(event) {
     switchView(targetDataViewValue);
   }
   if (event.target.getAttribute('id') === 'new-button') {
+    newEntryHeader.textContent = 'New Entry';
     newEntryForm.elements.title.value = '';
     newEntryForm.elements['photo-url'].value = '';
     newEntryForm.elements.notes.value = '';
@@ -150,7 +148,7 @@ function editIconHandler(event) {
       data.editing = data.entries[i];
     }
   }
-
+  newEntryHeader.textContent = 'Edit Entry';
   img.setAttribute('src', data.editing.url);
   inputTitle.value = data.editing.title;
   photoURL.value = data.editing.url;
