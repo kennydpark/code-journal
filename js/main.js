@@ -100,11 +100,12 @@ function handleViewNavigation(event) {
     switchView(targetDataViewValue);
   }
   if (event.target.getAttribute('id') === 'new-button') {
-    newEntryHeader.textContent = 'New Entry';
-    newEntryForm.elements.title.value = '';
-    newEntryForm.elements['photo-url'].value = '';
-    newEntryForm.elements.notes.value = '';
-    img.setAttribute('src', 'images/placeholder-image-square.jpg');
+    // newEntryHeader.textContent = 'New Entry';
+    // newEntryForm.elements.title.value = '';
+    // newEntryForm.elements['photo-url'].value = '';
+    // newEntryForm.elements.notes.value = '';
+    // img.setAttribute('src', 'images/placeholder-image-square.jpg');
+    newEntryForm.reset();
     data.editing = null;
   }
 }
