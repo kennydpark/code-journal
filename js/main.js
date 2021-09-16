@@ -11,6 +11,7 @@ var body = document.querySelector('body');
 var allView = document.querySelectorAll('.view');
 var noEntries = document.querySelector('#no-entries');
 var newEntryHeader = document.querySelector('.new-entry-header');
+// var $allLi = document.querySelectorAll('li');
 
 photoURL.addEventListener('input', photoURLUpdate);
 
@@ -31,6 +32,7 @@ function submitForm(event) {
   var notesvalue = newEntryForm.elements.notes.value;
   if (data.editing !== null) {
     var entry = document.querySelector('[data-entry-id=' + CSS.escape(data.editing.entryId) + ']');
+
     inputValues.title = titleValue;
     inputValues.url = urlValue;
     inputValues.notes = notesvalue;
@@ -100,11 +102,6 @@ function handleViewNavigation(event) {
     switchView(targetDataViewValue);
   }
   if (event.target.getAttribute('id') === 'new-button') {
-    // newEntryHeader.textContent = 'New Entry';
-    // newEntryForm.elements.title.value = '';
-    // newEntryForm.elements['photo-url'].value = '';
-    // newEntryForm.elements.notes.value = '';
-    // img.setAttribute('src', 'images/placeholder-image-square.jpg');
     newEntryForm.reset();
     data.editing = null;
   }
