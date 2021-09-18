@@ -121,7 +121,7 @@ function switchView(view) {
       allView[i].className = 'view hidden';
     }
   }
-  if ((data.nextEntryId === 1) && (data.view === 'entries')) {
+  if ((data.entries.length === 0) && (data.view === 'entries')) {
     noEntries.className = 'view';
   }
 }
