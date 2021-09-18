@@ -124,10 +124,6 @@ p {
   cursor: pointer;
 }
 
-.title-styling {
-  margin: 0 0;
-}
-
 .column-entry {
   margin-bottom: 10px;
 }
@@ -146,4 +142,22 @@ p {
 
 .column-entries {
   width: 50%;
+}
+
+i {
+  font-size: 1.5rem;
+  color: #562b81b4;
+  cursor: pointer;
+}
+
+i:hover {
+  color: #562b81;
+}
+
+.column-entry-title {
+  width: 50%;
+}
+
+.entries-top-row {
+  margin-bottom: 10px;
 }

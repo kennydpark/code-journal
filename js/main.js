@@ -1,12 +1,16 @@
 /* global data */
 /* exported data */
 
+var inputTitle = document.querySelector('#title');
 var photoURL = document.querySelector('#photo-url');
 var img = document.querySelector('img');
+var textAreaNotes = document.querySelector('#notes');
 var newEntryForm = document.querySelector('form');
 var ulElement = document.querySelector('ul');
 var body = document.querySelector('body');
 var allView = document.querySelectorAll('.view');
+var noEntries = document.querySelector('#no-entries');
+var newEntryHeader = document.querySelector('.new-entry-header');
 
 photoURL.addEventListener('input', photoURLUpdate);
 
@@ -25,36 +29,64 @@ function submitForm(event) {
   var titleValue = newEntryForm.elements.title.value;
   var urlValue = newEntryForm.elements['photo-url'].value;
   var notesvalue = newEntryForm.elements.notes.value;
-  inputValues.title = titleValue;
-  inputValues.url = urlValue;
-  inputValues.notes = notesvalue;
-  inputValues.entryId = data.nextEntryId;
-  data.entries.unshift(inputValues);
-  data.nextEntryId++;
-  newEntryForm.reset();
-  var newEntry = renderEntry(data.entries[0]);
-  ulElement.prepend(newEntry);
+  if (data.editing !== null) {
+    var entry = document.querySelector('[data-entry-id=' + '"' + data.editing.entryId + '"' + ']');
+
+    inputValues.title = titleValue;
+    inputValues.url = urlValue;
+    inputValues.notes = notesvalue;
+    inputValues.entryId = data.editing.entryId;
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId === data.editing.entryId) {
+        data.entries[i] = inputValues;
+        entry.replaceWith(renderEntry(data.entries[i]));
+      }
+    }
+  } else {
+    inputValues.title = titleValue;
+    inputValues.url = urlValue;
+    inputValues.notes = notesvalue;
+    inputValues.entryId = data.nextEntryId;
+    data.entries.unshift(inputValues);
+    data.nextEntryId++;
+    newEntryForm.reset();
+    var newEntry = renderEntry(data.entries[0]);
+    ulElement.prepend(newEntry);
+  }
   switchView('entries');
   img.setAttribute('src', 'images/placeholder-image-square.jpg');
 }
 
 function renderEntry(entry) {
   var entryItem = document.createElement('li');
+  entryItem.setAttribute('data-entry-id', entry.entryId);
   var divRow = document.createElement('div');
   divRow.setAttribute('class', 'row');
   entryItem.appendChild(divRow);
   var columnHalfImage = document.createElement('div');
-  columnHalfImage.setAttribute('class', 'column-half column-entry entry-image');
+  columnHalfImage.setAttribute('class', 'column-half column-entry');
   divRow.appendChild(columnHalfImage);
   var imgRender = document.createElement('img');
   imgRender.setAttribute('src', entry.url);
   columnHalfImage.appendChild(imgRender);
   var columnHalfText = document.createElement('div');
-  columnHalfText.setAttribute('class', 'column-half column-entry entry-text');
+  columnHalfText.setAttribute('class', 'column-half column-entry');
   divRow.appendChild(columnHalfText);
+  var divRowTitle = document.createElement('div');
+  divRowTitle.setAttribute('class', 'row');
+  columnHalfText.appendChild(divRowTitle);
+  var columnEntryTitle = document.createElement('div');
+  columnEntryTitle.setAttribute('class', 'column-entry-title');
+  divRowTitle.appendChild(columnEntryTitle);
   var h3 = document.createElement('h3');
   h3.setAttribute('class', 'font-proza title-styling');
-  columnHalfText.appendChild(h3);
+  columnEntryTitle.appendChild(h3);
+  var columnEntryTitleIcon = document.createElement('div');
+  columnEntryTitleIcon.setAttribute('class', 'column-entry-title column-edit-icon text-right');
+  divRowTitle.appendChild(columnEntryTitleIcon);
+  var editIcon = document.createElement('i');
+  editIcon.setAttribute('class', 'fas fa-pen');
+  columnEntryTitleIcon.appendChild(editIcon);
   h3.textContent = entry.title;
   var p = document.createElement('p');
   columnHalfText.appendChild(p);
@@ -67,6 +99,10 @@ function handleViewNavigation(event) {
   var targetDataViewValue = event.target.getAttribute('data-view');
   if (targetDataViewValue) {
     switchView(targetDataViewValue);
+  }
+  if (event.target.getAttribute('id') === 'new-button') {
+    newEntryForm.reset();
+    data.editing = null;
   }
 }
 
@@ -84,12 +120,6 @@ function switchView(view) {
   }
 }
 
-window.addEventListener('load', reloadPage);
-var noEntries = document.querySelector('#no-entries');
-function reloadPage(event) {
-  switchView(data.view);
-}
-
 document.addEventListener('DOMContentLoaded', loadedPage);
 
 function loadedPage(event) {
@@ -98,4 +128,27 @@ function loadedPage(event) {
     var domTree = renderEntry(data.entries[i]);
     ulElement.appendChild(domTree);
   }
+  switchView(data.view);
+}
+
+var entriesParent = document.querySelector('ul');
+entriesParent.addEventListener('click', editIconHandler);
+function editIconHandler(event) {
+  if (!(event.target.className === 'fas fa-pen')) {
+    return;
+  }
+  var entryListElement = event.target.closest('li');
+  var dataEntryIdValue = entryListElement.getAttribute('data-entry-id');
+  for (var i = 0; i < data.entries.length; i++) {
+    var entryIdString = data.entries[i].entryId.toString();
+    if (entryIdString === dataEntryIdValue) {
+      data.editing = data.entries[i];
+    }
+  }
+  newEntryHeader.textContent = 'Edit Entry';
+  img.setAttribute('src', data.editing.url);
+  inputTitle.value = data.editing.title;
+  photoURL.value = data.editing.url;
+  textAreaNotes.value = data.editing.notes;
+  switchView('entry-form');
 }
