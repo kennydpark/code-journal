@@ -11,7 +11,6 @@ var body = document.querySelector('body');
 var allView = document.querySelectorAll('.view');
 var noEntries = document.querySelector('#no-entries');
 var newEntryHeader = document.querySelector('.new-entry-header');
-// var $allLi = document.querySelectorAll('li');
 
 photoURL.addEventListener('input', photoURLUpdate);
 
@@ -31,7 +30,7 @@ function submitForm(event) {
   var urlValue = newEntryForm.elements['photo-url'].value;
   var notesvalue = newEntryForm.elements.notes.value;
   if (data.editing !== null) {
-    var entry = document.querySelector('[data-entry-id=' + CSS.escape(data.editing.entryId) + ']');
+    var entry = document.querySelector('[data-entry-id=' + '"' + data.editing.entryId + '"' + ']');
 
     inputValues.title = titleValue;
     inputValues.url = urlValue;
