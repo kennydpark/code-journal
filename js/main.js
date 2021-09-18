@@ -14,6 +14,7 @@ var newEntryHeader = document.querySelector('.new-entry-header');
 var $deleteButton = document.querySelector('#delete-button');
 var $modalContainer = document.querySelector('#modal-container');
 var $cancelButton = document.querySelector('.cancel');
+var $confirmButton = document.querySelector('.confirm');
 
 photoURL.addEventListener('input', photoURLUpdate);
 
@@ -169,4 +170,18 @@ function openModal(event) {
 $cancelButton.addEventListener('click', cancelModal);
 function cancelModal(event) {
   $modalContainer.className = 'display hidden overlay';
+}
+
+$confirmButton.addEventListener('click', confirmModal);
+function confirmModal(event) {
+  var entry = document.querySelector('[data-entry-id=' + '"' + data.editing.entryId + '"' + ']');
+  // console.log(entry);
+  entry.remove();
+  for (var i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].entryId === data.editing.entryId) {
+      data.entries.splice(i, 1);
+    }
+  }
+  $modalContainer.className = 'display hidden overlay';
+  switchView('entries');
 }
