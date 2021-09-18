@@ -175,7 +175,6 @@ function cancelModal(event) {
 $confirmButton.addEventListener('click', confirmModal);
 function confirmModal(event) {
   var entry = document.querySelector('[data-entry-id=' + '"' + data.editing.entryId + '"' + ']');
-  // console.log(entry);
   entry.remove();
   for (var i = 0; i < data.entries.length; i++) {
     if (data.entries[i].entryId === data.editing.entryId) {
