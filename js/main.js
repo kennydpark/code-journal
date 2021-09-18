@@ -12,6 +12,7 @@ var allView = document.querySelectorAll('.view');
 var noEntries = document.querySelector('#no-entries');
 var newEntryHeader = document.querySelector('.new-entry-header');
 var $deleteButton = document.querySelector('#delete-button');
+var $modalContainer = document.querySelector('#modal-container');
 
 photoURL.addEventListener('input', photoURLUpdate);
 
@@ -156,4 +157,11 @@ function editIconHandler(event) {
 
   $deleteButton.className = 'view';
   switchView('entry-form');
+}
+
+$deleteButton.addEventListener('click', deleteModal);
+function deleteModal(event) {
+  event.preventDefault();
+  // console.log('del button clicked');
+  $modalContainer.className = 'display overlay';
 }

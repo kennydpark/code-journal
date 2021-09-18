@@ -29,7 +29,8 @@
     padding: 0 0.75rem;
   }
 
-  .column-half {
+  .column-half,
+  .modal-column-full {
     width: 50%;
   }
 }
