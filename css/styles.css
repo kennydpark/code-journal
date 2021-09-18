@@ -187,13 +187,9 @@ i:hover {
   font-family: 'Open Sans', sans-serif;
   font-weight: bolder;
   width: 100%;
-
-  /* width: auto; */
   margin: auto;
   padding: 10px 5px;
   position: fixed;
-
-  /* top: 300px; */
 }
 
 .modal-row-padding {
@@ -228,8 +224,6 @@ i:hover {
 .modal-column-full {
   background-color: #f0f0f0;
   width: 350px;
-
-  /* width: auto; */
   margin: auto;
   position: relative;
   bottom: 90px;
