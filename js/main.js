@@ -13,6 +13,7 @@ var noEntries = document.querySelector('#no-entries');
 var newEntryHeader = document.querySelector('.new-entry-header');
 var $deleteButton = document.querySelector('#delete-button');
 var $modalContainer = document.querySelector('#modal-container');
+var $cancelButton = document.querySelector('.cancel');
 
 photoURL.addEventListener('input', photoURLUpdate);
 
@@ -159,9 +160,13 @@ function editIconHandler(event) {
   switchView('entry-form');
 }
 
-$deleteButton.addEventListener('click', deleteModal);
-function deleteModal(event) {
+$deleteButton.addEventListener('click', openModal);
+function openModal(event) {
   event.preventDefault();
-  // console.log('del button clicked');
   $modalContainer.className = 'display overlay';
+}
+
+$cancelButton.addEventListener('click', cancelModal);
+function cancelModal(event) {
+  $modalContainer.className = 'display hidden overlay';
 }
