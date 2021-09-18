@@ -11,6 +11,7 @@ var body = document.querySelector('body');
 var allView = document.querySelectorAll('.view');
 var noEntries = document.querySelector('#no-entries');
 var newEntryHeader = document.querySelector('.new-entry-header');
+var $deleteButton = document.querySelector('#delete-button');
 
 photoURL.addEventListener('input', photoURLUpdate);
 
@@ -102,7 +103,9 @@ function handleViewNavigation(event) {
   }
   if (event.target.getAttribute('id') === 'new-button') {
     newEntryForm.reset();
+    img.setAttribute('src', 'images/placeholder-image-square.jpg');
     data.editing = null;
+    $deleteButton.className = 'hidden';
   }
 }
 
@@ -150,5 +153,7 @@ function editIconHandler(event) {
   inputTitle.value = data.editing.title;
   photoURL.value = data.editing.url;
   textAreaNotes.value = data.editing.notes;
+
+  $deleteButton.className = 'view';
   switchView('entry-form');
 }

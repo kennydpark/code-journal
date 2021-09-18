@@ -161,3 +161,16 @@ i:hover {
 .entries-top-row {
   margin-bottom: 10px;
 }
+
+.column-footer {
+  display: flex;
+  width: 100%;
+}
+
+#delete-button {
+  border: none;
+  color: red;
+  text-decoration: underline;
+  font-size: medium;
+  cursor: pointer;
+}
