@@ -161,3 +161,87 @@ i:hover {
 .entries-top-row {
   margin-bottom: 10px;
 }
+
+.column-footer {
+  display: flex;
+  width: 100%;
+}
+
+#delete-button {
+  border: none;
+  color: red;
+  text-decoration: underline;
+  font-size: medium;
+  cursor: pointer;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.text-end {
+  text-align: end;
+}
+
+#modal-container {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bolder;
+  width: 100%;
+  margin: auto;
+  padding: 10px 5px;
+  position: fixed;
+}
+
+.modal-row-padding {
+  padding: 10px 0;
+}
+
+.column-cancel,
+.column-confirm {
+  width: 50%;
+}
+
+.cancel {
+  background-color: #b6b6b6;
+  color: black;
+  border-style: none;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding: 7px 12px;
+}
+
+.confirm {
+  background-color: #dc2626;
+  color: white;
+  border-style: none;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding: 7px 12px;
+}
+
+.modal-column-full {
+  background-color: #f0f0f0;
+  width: 350px;
+  margin: auto;
+  position: relative;
+  bottom: 90px;
+  border-radius: 5px;
+}
+
+.modal-buttons {
+  padding: 20px;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

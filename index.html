@@ -56,8 +56,13 @@
             </div>
           </div>
           <div class="row">
-            <div class="column-full text-right">
-              <button data-view="entries" type="submit" class="submit-button">SAVE</button>
+            <div class="column-footer">
+              <div class="column-half">
+                <button id="delete-button" class="hidden">Delete Entry</button>
+              </div>
+              <div class="column-half text-right">
+                <button data-view="entries" type="submit" class="submit-button">SAVE</button>
+              </div>
             </div>
           </div>
         </form>
@@ -78,6 +83,21 @@
       </div>
       <div data-view="no-entries" class="view" id="no-entries">
         <p class="text-center">No entries have been recorded.</p>
+      </div>
+      <div id="modal-container" class="display hidden overlay">
+        <div class="modal-column-full">
+          <div class="row justify-center modal-row-padding">
+            <p class="text-center">Are you sure you want to delete this entry?</p>
+          </div>
+          <div class="row modal-buttons">
+            <div class="column-cancel">
+              <button class="cancel">CANCEL</button>
+            </div>
+            <div class="column-confirm text-end">
+              <button class="confirm">CONFIRM</button>
+            </div>
+          </div>
+        </div>
       </div>
   </main>
   </div>

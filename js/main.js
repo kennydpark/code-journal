@@ -11,6 +11,10 @@ var body = document.querySelector('body');
 var allView = document.querySelectorAll('.view');
 var noEntries = document.querySelector('#no-entries');
 var newEntryHeader = document.querySelector('.new-entry-header');
+var $deleteButton = document.querySelector('#delete-button');
+var $modalContainer = document.querySelector('#modal-container');
+var $cancelButton = document.querySelector('.cancel');
+var $confirmButton = document.querySelector('.confirm');
 
 photoURL.addEventListener('input', photoURLUpdate);
 
@@ -102,7 +106,9 @@ function handleViewNavigation(event) {
   }
   if (event.target.getAttribute('id') === 'new-button') {
     newEntryForm.reset();
+    img.setAttribute('src', 'images/placeholder-image-square.jpg');
     data.editing = null;
+    $deleteButton.className = 'hidden';
   }
 }
 
@@ -115,7 +121,7 @@ function switchView(view) {
       allView[i].className = 'view hidden';
     }
   }
-  if ((data.nextEntryId === 1) && (data.view === 'entries')) {
+  if ((data.entries.length === 0) && (data.view === 'entries')) {
     noEntries.className = 'view';
   }
 }
@@ -150,5 +156,31 @@ function editIconHandler(event) {
   inputTitle.value = data.editing.title;
   photoURL.value = data.editing.url;
   textAreaNotes.value = data.editing.notes;
+
+  $deleteButton.className = 'view';
   switchView('entry-form');
+}
+
+$deleteButton.addEventListener('click', openModal);
+function openModal(event) {
+  event.preventDefault();
+  $modalContainer.className = 'display overlay';
+}
+
+$cancelButton.addEventListener('click', cancelModal);
+function cancelModal(event) {
+  $modalContainer.className = 'display hidden overlay';
+}
+
+$confirmButton.addEventListener('click', confirmModal);
+function confirmModal(event) {
+  var entry = document.querySelector('[data-entry-id=' + '"' + data.editing.entryId + '"' + ']');
+  entry.remove();
+  for (var i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].entryId === data.editing.entryId) {
+      data.entries.splice(i, 1);
+    }
+  }
+  $modalContainer.className = 'display hidden overlay';
+  switchView('entries');
 }
